@@ -26,12 +26,15 @@ class AboutPage extends StatelessWidget {
               Container(
                 width: 600,
                 height: 600,
-                child: ClipRRect(
+                decoration: BoxDecoration(
+                  border: Border.all(color:  Colors.black, width: 5),
                   borderRadius: BorderRadius.circular(30.0),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(25.5),
                   child: Image.asset("images/IMG_myicon.jpg",),
                 ),
               ),
-
               Container(
                 alignment: Alignment.center,
                 width: 600,

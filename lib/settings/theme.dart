@@ -68,10 +68,16 @@ ThemeData createThemeData(){
         color: Colors.black,
         letterSpacing: 2.5,
       ),
-      headline4: TextStyle(
+      headline3: TextStyle(
+        color: Colors.black87,
         letterSpacing: 2.5,
         height: 2.0,
-      )
+      ),
+      headline4: TextStyle(
+        color: Colors.black87,
+        letterSpacing: 2.5,
+        height: 2.0,
+      ),
     ),
   );
 }
