@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import '../settings/strings.dart';
+import 'package:flutter_web/components/box_with_frame.dart';
+import 'package:flutter_web/settings/strings.dart';
 
 class AboutPage extends StatelessWidget {
   final Size screenSize;
   
-  AboutPage({required this.screenSize});
+  const AboutPage({Key? key, required this.screenSize}) : super(key: key);
   
   @override
   Widget build(BuildContext context) {
+    final Size _boxSize = Size(screenSize.height * (3 / 5), screenSize.height * (3 / 5));
 
     return Container(
       width: screenSize.width,
@@ -16,46 +18,36 @@ class AboutPage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          Text(about.toUpperCase(),
+          Text(MajorItems.about.toUpperCase(),
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.headline2,
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              Container(
-                width: 600,
-                height: 600,
-                decoration: BoxDecoration(
-                  border: Border.all(color:  Colors.black, width: 5),
-                  borderRadius: BorderRadius.circular(30.0),
-                ),
-                child: ClipRRect(
+              BoxWithFrame(
+                width: _boxSize.width,
+                height: _boxSize.height,
+                childWidget: ClipRRect(
                   borderRadius: BorderRadius.circular(25.5),
-                  child: Image.asset("images/IMG_myicon.jpg",),
+                  child: Image.asset(Sentences.myImage,),
                 ),
               ),
-              Container(
+              BoxWithFrame(
                 alignment: Alignment.center,
-                width: 600,
-                height: 600,
-                decoration: BoxDecoration(
-                  border: Border.all(color:  Colors.black, width: 5),
-                  borderRadius: BorderRadius.circular(30.0),
-                ),
-                child: Container(
-                  height: 500,
-                  width: 500,
-                  child: Text(selfIntroduction,
+                width: _boxSize.width,
+                height: _boxSize.height,
+                childWidget: Container(
+                  padding: const EdgeInsets.all(50),
+                  child: Text(Sentences.selfIntroduction,
                     style: Theme.of(context).textTheme.headline4,
                   ),
                 ),
               ),
             ],
-          )
+          ),
         ],
-      )
+      ),
     );
   }
-
 }

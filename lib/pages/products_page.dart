@@ -1,83 +1,56 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_web/components/box_with_frame.dart';
+import 'package:flutter_web/components/product_box.dart';
+import 'package:flutter_web/settings/routes.dart';
 import 'package:flutter_web/settings/strings.dart';
+import 'package:routemaster/routemaster.dart';
 
 class ProductsPage extends StatelessWidget {
+  static const Size _productBoxSize = Size(450, 400);
   final Size screenSize;
 
-  ProductsPage({required this.screenSize});
+  const ProductsPage({Key? key, required this.screenSize}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final Size _baseContainerSize = Size(screenSize.width, screenSize.height * ( 4 / 3 ));
+
     return Container(
-      width: screenSize.width,
-      height: screenSize.height,
+      width: _baseContainerSize.width,
+      height: _baseContainerSize.height,
       color: Theme.of(context).backgroundColor,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 50),
+      child: GridView.count(
+        crossAxisCount: 3,
+        crossAxisSpacing: 100,
+        mainAxisSpacing: 100,
         children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              createProductBox(context: context, imagePath: "images/IMG_myicon.jpg", productTitle: screenSize.height.toString(), onTaped: (){}),
-              Container(
-                width: 450,
-                height: 400,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Text(products.toUpperCase(),
-                      style: Theme.of(context).textTheme.headline2,
-                    ),
-                    TextButton(
-                        onPressed: (){},
-                        child: Text(anyMore.toUpperCase(),
-                          style: Theme.of(context).textTheme.headline3,
-                        ),
-                    ),
-                  ],
+          ProductBox(productSummary: AllProductSummary.rlObstacleAvoidanceSummary),
+          Container(
+            width: _productBoxSize.width,
+            height: _productBoxSize.height,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Text(MajorItems.products.toUpperCase(),
+                  style: Theme.of(context).textTheme.headline2,
                 ),
-              ),
-              createProductBox(context: context, imagePath: "images/IMG_myicon.jpg", productTitle: "Product Title", onTaped: (){}),
-            ],
+                TextButton(
+                  onPressed: (){
+                      Routemaster.of(context).push(RouteManager.allProductsPath);
+                    },
+                  child: Text(MajorItems.anyMore.toUpperCase(),
+                    style: Theme.of(context).textTheme.headline3,
+                  ),
+                ),
+              ],
+            ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              createProductBox(context: context, imagePath: "images/IMG_myicon.jpg", productTitle: "Product Title", onTaped: (){}),
-              createProductBox(context: context, imagePath: "images/IMG_myicon.jpg", productTitle: "Product Title", onTaped: (){}),
-              createProductBox(context: context, imagePath: "images/IMG_myicon.jpg", productTitle: "Product Title", onTaped: (){}),
-            ],
-          ),
+          ProductBox(productSummary: AllProductSummary.socialDistanceVisualizationSystemSummary),
+          ProductBox(productSummary: AllProductSummary.kosenRobocon2020Summary),
+          ProductBox(productSummary: AllProductSummary.gakuseiRobocon2020AndroidSummary),
+          ProductBox(productSummary: AllProductSummary.gakuseiRobocon2020Summary),
         ],
       ),
     );
   }
-
-  Widget createProductBox({required BuildContext context, required String imagePath, required String productTitle, required void Function() onTaped}){
-    const double _imageHeight = 250;
-    const Size _titleBoxSize = Size(450, 150);
-
-    return GestureDetector(
-      onTap: onTaped,
-      child: BoxWithFrame(
-        childWidget: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Image.asset(imagePath, height: _imageHeight,),
-            Container(
-              width: _titleBoxSize.width,
-              height: _titleBoxSize.height,
-              alignment: Alignment.center,
-              child: Text(productTitle,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.headline4,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
 }

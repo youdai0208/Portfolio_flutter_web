@@ -1,118 +1,71 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web/components/box_with_frame.dart';
 import 'package:flutter_web/settings/strings.dart';
 
 class SkillPage extends StatelessWidget {
-  double get boxRoundedRadius => 30.0;
-  EdgeInsetsGeometry get skillListContainerPadding =>
-      const EdgeInsets.only(top: 0.0, bottom: 20.0, left: 30.0, right: 45.0);
   final Size screenSize;
 
-  SkillPage({required this.screenSize});
+  const SkillPage({Key? key, required this.screenSize}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final Size _boxSize = Size(screenSize.width * (3 / 7), screenSize.height * (3 / 4));
+    final Matrix4 _roboticsSkillGridTransform = Matrix4.translationValues(-25.0, 0.0, 0.0);
+    final Matrix4 _otherSkillGridTransform = Matrix4.translationValues(20.0, 0.0, 0.0);
+
     return Container(
       width: screenSize.width,
       height: screenSize.height,
       color: Theme.of(context).backgroundColor,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Text(
-            skill.toUpperCase(),
+            MajorItems.skill.toUpperCase(),
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.headline2,
-          ),
-          Container(
-            width: 900,
-            // height: ,
-            padding: const EdgeInsets.only(top: 10, bottom: 25, left: 25, right: 25),
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.black, width: 5),
-              borderRadius: BorderRadius.circular(30.0),
-            ),
-            child: Container(
-              // width: 600,
-              // height: 250,
-              alignment: Alignment.center,
-              child: Text(
-                levelIntroduction,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.headline4,
-              ),
-            ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               Container(
-                padding: skillListContainerPadding,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black, width: 5),
-                  borderRadius: BorderRadius.circular(30.0),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Text(
-                      robotics.toUpperCase(),
-                      style: Theme.of(context).textTheme.headline3,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
-                        SizedBox(
-                          width: 400,
-                          child: Text(
-                            roboticsSkill,
-                            style: Theme.of(context).textTheme.headline4,
-                          ),
-                        ),
-                        Container(
-                          width: 100,
-                        ),
-                        Text(
-                          robotSkillLevel,
-                          style: Theme.of(context).textTheme.headline4,
-                        ),
-                      ],
-                    ),
-                  ],
+                width: _boxSize.width,
+                height: _boxSize.height,
+                child: BoxWithFrame(
+                  childWidget: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        MajorItems.robotics.toUpperCase(),
+                        style: Theme.of(context).textTheme.headline3,
+                      ),
+                      Container(
+                        transform: _roboticsSkillGridTransform,
+                        child: createSkillSlot(context, SkillMaps.roboticsSkillMap),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               Container(
-                padding: skillListContainerPadding,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black, width: 5),
-                  borderRadius: BorderRadius.circular(30.0),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Text(
-                      other.toUpperCase(),
-                      style: Theme.of(context).textTheme.headline3,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
-                        SizedBox(
-                          width: 400,
-                          child: Text(
-                            otherSkill,
-                            style: Theme.of(context).textTheme.headline4,
-                          ),
-                        ),
-                        Container(
-                          width: 100,
-                        ),
-                        Text(
-                          otherSkillLevel,
-                          style: Theme.of(context).textTheme.headline4,
-                        ),
-                      ],
-                    ),
-                  ],
+                width: _boxSize.width,
+                height: _boxSize.height,
+                child: BoxWithFrame(
+                  childWidget: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(
+                        MajorItems.other.toUpperCase(),
+                        style: Theme.of(context).textTheme.headline3,
+                      ),
+                      Container(
+                        transform: _otherSkillGridTransform,
+                        child: createSkillSlot(context, SkillMaps.otherSkillMap),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -121,74 +74,37 @@ class SkillPage extends StatelessWidget {
       ),
     );
   }
+  
+  Widget createSkillSlot(BuildContext context, Map<String, String> skillSlotMap){
+    final double _baseContainerHeight = screenSize.height * (1 / 4);
+    final double _imageHeight = screenSize.height * (1 / 6);
+    List<Widget> skillSlotList = [];
 
-  Container createSkillBox(BuildContext context, String classification, Map<String, String> skillMap, double boxRoundedRadius) {
-    const String _enter = "\n";
-    const String _level = "-Level";
-    const EdgeInsetsGeometry _skillListContainerPadding = EdgeInsets.only(top: 0.0, bottom: 20.0, left: 30.0, right: 45.0);
-    const double _borderWidth = 5.0;
-    const double _skillNameBoxWidth = 400.0;
-    const double _skillSpaceBoxWidth = 100.0;
-
-    String _skillNameList = "";
-    String _skillLevelList = "";
-
-    skillMap.forEach((key, value) {
-      _skillNameList += key + _enter;
-      _skillLevelList += _level + value + _enter;
+    skillSlotMap.forEach((key, value) {
+      skillSlotList.add(
+        Container(
+          height: _baseContainerHeight,
+          alignment: Alignment.center,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Image.asset(value, height: _imageHeight,),
+              Text(key, style: Theme.of(context).textTheme.headline4,),
+            ],
+          ),
+        ),
+      );
     });
 
-    Column childWidget = Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: <Widget>[
-        Text(
-          classification.toUpperCase(),
-          style: Theme.of(context).textTheme.headline3,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            SizedBox(
-              width: _skillNameBoxWidth,
-              child: Text(
-                _skillNameList,
-                style: Theme.of(context).textTheme.headline4,
-              ),
-            ),
-            Container(
-              width: _skillSpaceBoxWidth,
-            ),
-            Text(
-              _skillLevelList,
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ],
-    );
-
-    return createBoxWithFrame(childWidget, _skillListContainerPadding);
+    return GridView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, crossAxisSpacing: 10, mainAxisSpacing: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 25.0),
+          itemCount: skillSlotList.length,
+          itemBuilder: (BuildContext context, int index) {
+            return skillSlotList.elementAt(index);
+          }
+      );
   }
-
-  Container createBoxWithFrame(Widget childWidget, EdgeInsetsGeometry containerPadding) {
-    const double _borderWidth = 5.0;
-    const double _boxRoundedRadius = 30.0;
-
-    return Container(
-      padding: containerPadding,
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.black, width: _borderWidth),
-        borderRadius: BorderRadius.circular(_boxRoundedRadius),
-      ),
-      child: childWidget,
-    );
-  }
-
-  // String createSkillNameList(List<String> skill_name_list){
-  //   String _resultText = "";
-  //   for(String i in skill_name_list){
-  //     _resultText += i + "\n";
-  //   }
-  //   return _resultText;
-  // }
 }

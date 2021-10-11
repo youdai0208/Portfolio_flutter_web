@@ -1,181 +1,68 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web/components/base_page_layout.dart';
 import 'package:flutter_web/pages/about_page.dart';
-import 'package:flutter_web/pages/all_product_page.dart';
 import 'package:flutter_web/pages/products_page.dart';
 import 'package:flutter_web/pages/skill_page.dart';
+import 'package:flutter_web/settings/routes.dart';
+import 'package:routemaster/routemaster.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'settings/strings.dart';
 import 'settings/theme.dart';
 import 'pages/top_page.dart';
 
 void main() {
+  Routemaster.setPathUrlStrategy();
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    const Locale _locale = Locale("ja", "JP");
+    return MaterialApp.router(
       // debugShowCheckedModeBanner: false,
-      title: siteTitle,
+      title: MajorItems.siteTitle,
       theme: createThemeData(),
-      // home: MyHomePage(title: appBarTitle),
-      home: AllProductPage(),
+      locale: _locale,
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        _locale,
+      ],
+      routerDelegate: RoutemasterDelegate(routesBuilder: (_) => RouteManager().getRoutes()),
+      routeInformationParser: RoutemasterParser(),
     );
   }
 }
 
-// class MyHomePage1 extends StatelessWidget {
-//   final String title;
-//   ScrollController _scrollController = new ScrollController();
-//
-//   MyHomePage1({required this.title});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     final Size screen_size = MediaQuery.of(context).size;
-//
-//     return Scaffold(
-//       body: CustomScrollView(
-//         controller: _scrollController,
-//         slivers: <Widget>[
-//           SliverAppBar(
-//             pinned: false,
-//             snap: true,
-//             floating: true,
-//             title: Text(title),
-//             actions: <Widget>[
-//               TextButton(
-//                 onPressed: () {},
-//                 child: Text(about.toUpperCase()),
-//               ),
-//               TextButton(
-//                 onPressed: () {},
-//                 child: Text(skill.toUpperCase()),
-//               ),
-//               TextButton(
-//                 onPressed: () {},
-//                 child: Text(products.toUpperCase()),
-//               ),
-//             ],
-//           ),
-//           SliverList(
-//             delegate: SliverChildListDelegate(<Widget>[
-//               TopPage(backColor: Color(myWhite), screenSize: screen_size,),
-//               AboutPage(screenSize: screen_size),
-//               SkillPage(screenSize: screen_size),
-//               ProductsPage(screenSize: screen_size),
-//             ]),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
+class MyHomePage extends StatelessWidget {
+  String? position;
+  static Size _screenSize = const Size(0,0);
+  List<Widget> _children = <Widget>[];
 
-class MyHomePage extends StatefulWidget {
-  final String title;
-
-  MyHomePage({required this.title});
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  ScrollController _scrollController = new ScrollController();
+  MyHomePage({Key? key, this.position}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final Size screen_size = MediaQuery.of(context).size;
-    return Scaffold(
-      body: CustomScrollView(
-        controller: _scrollController,
-        slivers: <Widget>[
-          SliverAppBar(
-            pinned: false,
-            snap: true,
-            floating: true,
-            title: homePageTextButton(
-                scrollController: _scrollController,
-                widgetPosition: screen_size.height * 0,
-                text: widget.title
-            ),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  _scrollController.animateTo(
-                      screen_size.height * 1,
-                      duration: const Duration(milliseconds: 500),
-                      curve: Curves.easeOut,
-                  );
-                },
-                child: Text(about.toUpperCase()),
-              ),
-              TextButton(
-                onPressed: () {
-                  _scrollController.animateTo(
-                    screen_size.height * 2,
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.easeOut,
-                  );
-                },
-                child: Text(skill.toUpperCase()),
-              ),
-              TextButton(
-                onPressed: () {
-                  _scrollController.animateTo(
-                    screen_size.height * 3,
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.easeOut,
-                  );
-                },
-                child: Text(products.toUpperCase()),
-              ),
-            ],
-          ),
-          SliverList(
-            delegate: SliverChildListDelegate(
-                <Widget>[
-                  TopPage(backColor: Color(myWhite), screenSize: screen_size,),
-                  AboutPage(screenSize: screen_size),
-                  SkillPage(screenSize: screen_size),
-                  ProductsPage(screenSize: screen_size),
-                ]
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 
-  Widget homePageTextButton({required ScrollController scrollController, required double widgetPosition, required String text,
-    int? animationTime, Curve? curve}){
-    int _animationTime = 500;
-    Curve _curve = Curves.easeOut;
+    return LayoutBuilder(
+      builder: (context, constraints){
+        _screenSize = Size(constraints.maxWidth, constraints.maxHeight);
 
-    if(animationTime != null) {
-      _animationTime = animationTime;
-    }
+        _children = <Widget>[
+          TopPage(screenSize: _screenSize,),
+          AboutPage(screenSize: _screenSize),
+          SkillPage(screenSize: _screenSize),
+          ProductsPage(screenSize: _screenSize),
+        ];
 
-    if(curve != null) {
-      _curve = curve;
-    }
-
-    return TextButton(
-      onPressed: () {
-        scrollController.animateTo(
-          widgetPosition,
-          duration: Duration(milliseconds: _animationTime),
-          curve: _curve,
-        );
+        return BasePageLayout(isTopPage: true, position: position, screenSize: _screenSize, children: _children);
       },
-      child: Text(text,),
     );
   }
 }
-
-
-
