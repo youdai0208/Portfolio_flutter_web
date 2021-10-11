@@ -9,7 +9,7 @@ class AboutPage extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    final Size _boxSize = Size(screenSize.height * (3 / 5), screenSize.height * (3 / 5));
+    final Size _boxSize = Size(screenSize.height * (2 / 3), screenSize.height * (2 / 3));
 
     return Container(
       width: screenSize.width,
