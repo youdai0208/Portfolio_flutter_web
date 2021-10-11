@@ -28,7 +28,7 @@ class Sentences {
   static const String myJobSample = "Robot Software Engineer. \n"
       "Android Application Engineer. \n"
       "etc...";
-  static const String myImage = "images/IMG_myicon.jpg";
+  static const String myImage = "assets/images/IMG_myicon.jpg";
   static const String selfIntroduction = "名前：下沢　陽大\n　　　Shimosawa Youdai\n"
       "所属：仙台高等専門学校\n　　　総合工学科Ⅱ類\n　　　ロボティクスコース5年\n"
       "出身：宮城県仙台市\n"
@@ -39,20 +39,20 @@ class Sentences {
 
 class SkillMaps {
   static const Map<String, String> roboticsSkillMap = {
-    "STM32" : "images/tool_icon/microcomputer.png",
-    "C++" : "images/tool_icon/c++.png",
-    "RealSense" : "images/tool_icon/realsense.png",
-    "OpenCV" : "images/tool_icon/opencv.png",
-    "ROS1" : "images/tool_icon/ros.png",
-    "Raspberry Pi" : "images/tool_icon/raspberrypi.png",
+    "STM32" : "assets/images/tool_icon/microcomputer.png",
+    "C++" : "assets/images/tool_icon/c++.png",
+    "RealSense" : "assets/images/tool_icon/realsense.png",
+    "OpenCV" : "assets/images/tool_icon/opencv.png",
+    "ROS1" : "assets/images/tool_icon/ros.png",
+    "Raspberry Pi" : "assets/images/tool_icon/raspberrypi.png",
   };
   static const Map<String, String> otherSkillMap = {
-    "Android App" : "images/tool_icon/androidos.png",
-    "Ubuntu" : "images/tool_icon/ubuntu.png",
-    "Python3" : "images/tool_icon/python.png",
-    "Unity" : "images/tool_icon/unity.png",
-    "Pytorch" : "images/tool_icon/pytorch-icon.png",
-    "Flutter" : "images/tool_icon/flutter.png",
+    "Android App" : "assets/images/tool_icon/androidos.png",
+    "Ubuntu" : "assets/images/tool_icon/ubuntu.png",
+    "Python3" : "assets/images/tool_icon/python.png",
+    "Unity" : "assets/images/tool_icon/unity.png",
+    "Pytorch" : "assets/images/tool_icon/pytorch-icon.png",
+    "Flutter" : "assets/images/tool_icon/flutter.png",
   };
 }
 
@@ -103,11 +103,11 @@ class AllProductSummary {
   static final ProductSummary rlObstacleAvoidanceSummary = ProductSummary(
     name: "強化学習を用いた単眼カメラ障害物回避システム",
     title: "強化学習を用いた単眼\nカメラ障害物回避システム",
-    imagePath: "images/product_image/rl_obstacle_avoidance.jpg",
+    imagePath: "assets/images/product_image/rl_obstacle_avoidance.jpg",
     skill: {
-      "Python3" : "images/tool_icon/python.png",
-      "Unity" : "images/tool_icon/unity.png",
-      "Jetson":"images/tool_icon/nvidia.png",
+      "Python3" : "assets/images/tool_icon/python.png",
+      "Unity" : "assets/images/tool_icon/unity.png",
+      "Jetson":"assets/images/tool_icon/nvidia.png",
     },
     about: "UnityのML-Agentsを利用し、Unity上に複数の色、形、大きさの障害物をランダムに配置したシミュレーターの中を自動車に見立てたモデルが走行します。"
         "そして学習することで、障害物に衝突しないように作ったAIです。\n"
@@ -119,11 +119,11 @@ class AllProductSummary {
   static final ProductSummary socialDistanceVisualizationSystemSummary = ProductSummary(
     name: "ソーシャルディスタンス可視化システム",
     title: "ソーシャルディスタンス\n可視化システムの構築",
-    imagePath: "images/product_image/social_distance_visualization_system.png",
+    imagePath: "assets/images/product_image/social_distance_visualization_system.png",
     skill: {
-      "C++" : "images/tool_icon/c++.png",
-      "OpenCV" : "images/tool_icon/opencv.png",
-      "RealSense" : "images/tool_icon/realsense.png",
+      "C++" : "assets/images/tool_icon/c++.png",
+      "OpenCV" : "assets/images/tool_icon/opencv.png",
+      "RealSense" : "assets/images/tool_icon/realsense.png",
     },
     about: "ソーシャルディスタンスの確保ができていない場面を街中で見たのをもとに、ソーシャルディスタンスが確保できているか可視化できるシステムを構築しました。\n"
         "RealSenseD435iとOpenCVを利用し、人間を検出した後RealSenseから得られた深度情報をもとに三次元での距離を算出、計測し人間検出の枠の色を変更することで可視化を可能にしたものです。",
@@ -132,10 +132,10 @@ class AllProductSummary {
 
   static final ProductSummary kosenRobocon2020Summary = ProductSummary(
     name: "高専ロボコン2020",
-    imagePath: "images/product_image/kosen_robocon_2020.JPG",
+    imagePath: "assets/images/product_image/kosen_robocon_2020.JPG",
     skill: {
-      "C++" : "images/tool_icon/c++.png",
-      "STM32" : "images/tool_icon/microcomputer.png",
+      "C++" : "assets/images/tool_icon/c++.png",
+      "STM32" : "assets/images/tool_icon/microcomputer.png",
     },
     about: "画像の下部のロボットの移動制御を担当しました。\n"
         "操縦はコントローラー行い、上部のロボットを載せて移動することで演技を行っていました。",
@@ -145,10 +145,10 @@ class AllProductSummary {
   static final ProductSummary gakuseiRobocon2020AndroidSummary = ProductSummary(
     name: "学生ロボコン2020コンソールアプリ",
     title: "学生ロボコン2020\nコンソールアプリ",
-    imagePath: "images/product_image/gakusei_robocon_2020_android.jpg",
+    imagePath: "assets/images/product_image/gakusei_robocon_2020_android.jpg",
     skill: {
-      "Android App" : "images/tool_icon/androidos.png",
-      "STM32" : "images/tool_icon/microcomputer.png",
+      "Android App" : "assets/images/tool_icon/androidos.png",
+      "STM32" : "assets/images/tool_icon/microcomputer.png",
     },
     about: "2020学生ロボコンのPRロボットのコンソールアプリを製作しました。\n"
         "ロボットにPCを載せると重くなり、かつ場所をとるためスマホのアプリにしました。\n"
@@ -159,10 +159,10 @@ class AllProductSummary {
 
   static final ProductSummary gakuseiRobocon2020Summary = ProductSummary(
     name: "学生ロボコン2020",
-    imagePath: "images/product_image/gakusei_robocon_2020.JPG",
+    imagePath: "assets/images/product_image/gakusei_robocon_2020.JPG",
     skill: {
-      "C++" : "images/tool_icon/c++.png",
-      "STM32" : "images/tool_icon/microcomputer.png",
+      "C++" : "assets/images/tool_icon/c++.png",
+      "STM32" : "assets/images/tool_icon/microcomputer.png",
     },
     about: "　ラグビーボールを所定の場所からピックアップしもう一台のロボットにパスするのと、セットされたラグビーボールをキックするロボットの自動走行周りを担当しました。\n"
         "あるポイントを起点として様々な場所へ向かえるようにすることで、柔軟な選択と精度が出せるようにしました。\n"
@@ -173,12 +173,12 @@ class AllProductSummary {
   static final ProductSummary threeWheelOmuniRobotSummary = ProductSummary(
     name: "ROSを使用した3輪オムニホイールロボット",
     title: "ROSを使用した3輪\nオムニホイールロボット",
-    imagePath: "images/product_image/three_wheel_omuni_robot.png",
+    imagePath: "assets/images/product_image/three_wheel_omuni_robot.png",
     skill: {
-      "C++" : "images/tool_icon/c++.png",
-      "STM32" : "images/tool_icon/microcomputer.png",
-      "ROS1" : "images/tool_icon/ros.png",
-      "Ubuntu" : "images/tool_icon/ubuntu.png",
+      "C++" : "assets/images/tool_icon/c++.png",
+      "STM32" : "assets/images/tool_icon/microcomputer.png",
+      "ROS1" : "assets/images/tool_icon/ros.png",
+      "Ubuntu" : "assets/images/tool_icon/ubuntu.png",
     },
     about: "ROSや機体、回路の勉強を兼ねて3輪オムニホイールロボットを製作し、ROS部分を担当しました。\n"
         "短期間だったため、製作が追いつかず苦労しました。\n"
@@ -188,10 +188,10 @@ class AllProductSummary {
 
   static final ProductSummary kosenRobocon2019Summary = ProductSummary(
     name: "高専ロボコン2019",
-    imagePath: "images/product_image/kosen_robocon_2019.jpg",
+    imagePath: "assets/images/product_image/kosen_robocon_2019.jpg",
     skill: {
-      "C++" : "images/tool_icon/c++.png",
-      "STM32" : "images/tool_icon/microcomputer.png",
+      "C++" : "assets/images/tool_icon/c++.png",
+      "STM32" : "assets/images/tool_icon/microcomputer.png",
     },
     about: "私は洗濯物干しロボットの自動走行を担当しました。(画像は開発中だったものです)\n"
         "今回の自動走行は自分で経路計画や経路追従のコードを書き実装しました。今回の競技は状況によって様々な走行ルートを取る必要があった為、ロボットがどのモードかLEDの点灯状況から判断できるようにしました。\n"
@@ -202,11 +202,11 @@ class AllProductSummary {
 
   static final ProductSummary gakuseiRobocon2019Summary = ProductSummary(
     name: "学生ロボコン2019",
-    imagePath: "images/product_image/gakusei_robocon_2019.jpg",
+    imagePath: "assets/images/product_image/gakusei_robocon_2019.jpg",
     skill: {
-      "C++" : "images/tool_icon/c++.png",
-      "Raspberry Pi" : "images/tool_icon/raspberrypi.png",
-      "RealSense" : "images/tool_icon/realsense.png",
+      "C++" : "assets/images/tool_icon/c++.png",
+      "Raspberry Pi" : "assets/images/tool_icon/raspberrypi.png",
+      "RealSense" : "assets/images/tool_icon/realsense.png",
     },
     about: "　私は四足歩行ロボットの経路計画、経路追従を担当しました。(画像は開発中だったものです)\n"
         "　今までに無い難題だったため、終始苦労しました。\n"
@@ -216,12 +216,12 @@ class AllProductSummary {
 
   static final ProductSummary kosenRobocon2018Summary = ProductSummary(
     name: "高専ロボコン2018",
-    imagePath: "images/product_image/kosen_robocon_2018.jpg",
+    imagePath: "assets/images/product_image/kosen_robocon_2018.jpg",
     skill: {
-      "C++" : "images/tool_icon/c++.png",
-      "STM32" : "images/tool_icon/microcomputer.png",
-      "ROS1" : "images/tool_icon/ros.png",
-      "Ubuntu" : "images/tool_icon/ubuntu.png",
+      "C++" : "assets/images/tool_icon/c++.png",
+      "STM32" : "assets/images/tool_icon/microcomputer.png",
+      "ROS1" : "assets/images/tool_icon/ros.png",
+      "Ubuntu" : "assets/images/tool_icon/ubuntu.png",
     },
     about: "ボトルフリップを行うロボットの自動走行と腕の投擲機構の制御を担当しました。\n"
         "(画像は開発中だったものです)\n"
@@ -231,12 +231,12 @@ class AllProductSummary {
 
   static final ProductSummary realTimeVoiceControlVRGameSummary = ProductSummary(
     name: "リアルタイム音声操作VRゲーム開発",
-    imagePath: "images/product_image/real_time_voice_control_vr_game.jpg",
+    imagePath: "assets/images/product_image/real_time_voice_control_vr_game.jpg",
     skill: {
-      "C++" : "images/tool_icon/c++.png",
-      "STM32" : "images/tool_icon/microcomputer.png",
-      "ROS1" : "images/tool_icon/ros.png",
-      "Ubuntu" : "images/tool_icon/ubuntu.png",
+      "C++" : "assets/images/tool_icon/c++.png",
+      "STM32" : "assets/images/tool_icon/microcomputer.png",
+      "ROS1" : "assets/images/tool_icon/ros.png",
+      "Ubuntu" : "assets/images/tool_icon/ubuntu.png",
     },
     about: "Google音声認識を使ったVRゲームをUnityを使って開発していました。\n"
         "アプリにGoogle音声認識を内蔵し、キャラクターをリアルタイムでかつ声で操作することで臨場感のあるゲームを目指しました。",
