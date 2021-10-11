@@ -4,10 +4,10 @@ import 'package:flutter_web/settings/routes.dart';
 
 class MajorItems{
   //Site Title
-  static const String siteTitle = "PortFolio Ver.Flutter";
+  static const String siteTitle = "Youdai's PortFolio Ver.Flutter";
 
 //App Bar Title
-  static const String appBarTitle = "Yotto's PortFolio Site";
+  static const String appBarTitle = "Youdai's PortFolio Site";
 
 //Major Items
   static const String about = "about";
@@ -24,7 +24,7 @@ class MajorItems{
 class Sentences {
   //Sentence
   static const String topMessage = "Welcome to \n"
-      "Yodai's PortFolio";
+      "Youdai's PortFolio";
   static const String myJobSample = "Robot Software Engineer. \n"
       "Android Application Engineer. \n"
       "etc...";
