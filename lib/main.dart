@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     const Locale _locale = Locale("ja", "JP");
     return MaterialApp.router(
-      // debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false,
       title: MajorItems.siteTitle,
       theme: createThemeData(),
       locale: _locale,
