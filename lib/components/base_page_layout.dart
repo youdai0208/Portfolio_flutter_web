@@ -15,7 +15,7 @@ class BasePageLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if(MediaQuery.of(context).size.height < 1007 || MediaQuery.of(context).size.width < 1920){
+    if(MediaQuery.of(context).size.height < 1000 || MediaQuery.of(context).size.width < 1900){
       return ScreenSizeWarningPage(screenSize: MediaQuery.of(context).size,);
     }
 
