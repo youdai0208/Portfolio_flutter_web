@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import '../settings/strings.dart';
+import 'package:flutter_web/settings/strings.dart';
 
 class TopPage extends StatelessWidget {
-  final Color backColor;
   final Size screenSize;
 
-  TopPage({this.backColor = Colors.white, required this.screenSize});
+  const TopPage({Key? key, required this.screenSize}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,15 +12,15 @@ class TopPage extends StatelessWidget {
     return Container(
       width: screenSize.width,
       height: screenSize.height,
-      color: backColor,
+      color: Theme.of(context).backgroundColor,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          Text(topMessage,
+          Text(Sentences.topMessage,
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.headline1,
           ),
-          Text(myJobSample,
+          Text(Sentences.myJobSample,
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.headline4,
           )
@@ -29,5 +28,4 @@ class TopPage extends StatelessWidget {
       ),
     );
   }
-
 }
